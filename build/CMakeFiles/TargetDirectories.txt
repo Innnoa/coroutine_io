@@ -1,3 +1,0 @@
-/home/innno/code/c++/coroutine/test/4-copy/build/CMakeFiles/4_copy.dir
-/home/innno/code/c++/coroutine/test/4-copy/build/CMakeFiles/edit_cache.dir
-/home/innno/code/c++/coroutine/test/4-copy/build/CMakeFiles/rebuild_cache.dir
