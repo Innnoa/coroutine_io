@@ -265,10 +265,25 @@ void Scheduler::handle_idle_state()
 
     if (!is_idle_)
     {
-        // 第一次进入空闲状态
         is_idle_ = true;
         idle_start_time_ = now;
-        std::cout << "调度器进入空闲状态，开始计时..." << std::endl;
+    }
+
+    bool all_finished = true;
+    for (const auto& co : all_coroutines_)
+    {
+        if (co->state() != CoroutineState::FINISHED)
+        {
+            all_finished = false;
+            break;
+        }
+    }
+
+    if (all_finished && !all_coroutines_.empty())
+    {
+        std::cout << "所有协程已完成，调度器退出" << std::endl;
+        should_continue_ = false;
+        return;
     }
 
     const auto idle_duration = std::chrono::duration_cast<std::chrono::seconds>(
